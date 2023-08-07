@@ -128,3 +128,9 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# Private overlays
+overlays_private
+
+# Reference folder for each overlay
+overlays/*/reference
