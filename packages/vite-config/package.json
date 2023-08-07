@@ -1,0 +1,17 @@
+{
+  "name": "@overlays/vite-config",
+  "version": "1.0.0",
+  "description": "Common Vite config for all the overlays",
+  "type": "module",
+  "exports": "./index.js",
+  "types": "./index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Long Nguyen",
+  "license": "MIT",
+  "devDependencies": {
+    "vite": "^4.4.5"
+  }
+}

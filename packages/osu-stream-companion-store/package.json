@@ -1,0 +1,23 @@
+{
+  "name": "osu-stream-companion-store",
+  "version": "1.0.0",
+  "description": "A Svelte store to connect to osu! Stream Companion",
+  "type": "module",
+  "exports": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rimraf dist && tsc"
+  },
+  "keywords": [],
+  "author": "Long Nguyen",
+  "license": "MIT",
+  "dependencies": {
+    "merge-anything": "^5.1.7",
+    "reconnecting-websocket": "^4.4.0"
+  },
+  "devDependencies": {
+    "rimraf": "^5.0.1",
+    "ts-essentials": "^9.3.2"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "name": "overlays",
+  "version": "1.0.0",
+  "description": "A reimplementation of 2ky's overlays using Svelte + Stream Companion",
+
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Long Nguyen",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.1.6"
+  }
+}

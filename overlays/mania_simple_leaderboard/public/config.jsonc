@@ -1,0 +1,48 @@
+{
+    // Set the server to fetch leaderboard from in the `current` field
+    // Servers list are defined in the `servers` array
+    // The `current` field must match one of the names in the `servers` array
+    // Some common servers are defined below
+
+    // Some backends require CORS to be disabled, which is unsafe and insecure
+    // Only use if you're aware of the risk
+    // Backends requiring disabled CORS: osu_v2
+    "current": "osu",
+    "servers": [
+        {
+            "name": "osu",
+            "type": "osu_v1",
+            "endpoint": "https://osu.ppy.sh/api",
+            "api_key": "3833db323cca2d6f59a22744bcd1ea10e5d72812"
+        },
+        {
+            "name": "osu_new",
+            "type": "osu_v2",
+            "endpoint": "https://osu.ppy.sh/api/v2",
+            "auth_endpoint": "https://osu.ppy.sh/oauth/token",
+            "client_id": "<your client ID here>",
+            "client_secret": "<your client secret here>"
+        },
+        {
+            "name": "jakadsmania",
+            "type": "akatsuki_v1",
+            "endpoint": "https://osu.jakadsmania.com/api"
+        }
+    ],
+    // Leaderboard cards configuration
+    // All size measurements are in pixels
+    // Minimum source size in OBS: (width + 50)x(height * count + gap * (count - 1))
+    "card": {
+        // Number of cards to show, minimum 6
+        "count": 6,
+
+        // Card width, minimum 263px
+        "width": 300,
+
+        // Card height, minimum 88px
+        "height": 88,
+
+        // Card gap, minimum 0px
+        "gap": 10
+    }
+}
