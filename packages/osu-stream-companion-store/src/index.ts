@@ -13,6 +13,12 @@ type Options = {
     socket: WSOptions,
 };
 
+type Unsubscribe = () => void;
+type Callback = (obj: { values: SCObject, changes: SCObject | null }) => void;
+type SCStore = {
+    subscribe: (cb: Callback) => Unsubscribe
+};
+
 const defaultParams: Options = {
     debug: false,
     bulkUpdates: [],
@@ -28,10 +34,10 @@ export default function companion<T extends readonly Tokens[]>(
     options: DeepPartial<Options> = {}
 ) {
     type SCObjectPicked = Pick<SCObject, T[number]>;
-    type Callback = (obj: { values: SCObjectPicked, changes: SCObjectPicked | null; }) => void;
+    type StrictCallback = (obj: { values: SCObjectPicked, changes: SCObjectPicked | null; }) => void;
 
     const mergedParams = mergeAndConcat(options, defaultParams);
-    const subscribers = new Set<Callback>();
+    const subscribers = new Set<StrictCallback>();
 
     function callSubscribers() {
         for (const sub of subscribers)
@@ -64,7 +70,7 @@ export default function companion<T extends readonly Tokens[]>(
     };
 
     return {
-        subscribe: (cb: Callback) => {
+        subscribe: (cb: StrictCallback) => {
             subscribers.add(cb);
             if (ws.readyState === ws.CLOSED)
                 ws.reconnect();
@@ -76,8 +82,8 @@ export default function companion<T extends readonly Tokens[]>(
                     ws.close();
             };
         }
-    };
+    } satisfies SCStore;
 }
 
 export * from "./enums.js";
-export type { SCObject, Tokens };
+export type { SCObject, SCStore, Tokens };
