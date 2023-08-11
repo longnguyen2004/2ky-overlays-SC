@@ -4,15 +4,10 @@
     GameStates,
     type Tokens,
   } from "osu-stream-companion-store";
-  import anime from "animejs";
-  import { afterUpdate } from "svelte";
-  import { fade } from "svelte/transition";
-  import { MD5 } from "object-hash";
   import { config } from "./lib/config";
   import * as Client from "./lib/api";
 
-  import type { ScoreEntry } from "./lib/api";
-    import Leaderboard from "./components/Leaderboard.svelte";
+  import Leaderboard from "./components/Leaderboard.svelte";
 
   let fetcher: Client.ApiClient;
   const server = config.servers.find(({ name }) => name === config.current);
