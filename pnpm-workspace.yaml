@@ -2,3 +2,4 @@ packages:
   - "overlays/*"
   - "overlays_private/*"
   - "packages/*"
+  - "packages/@overlay-fonts/*"

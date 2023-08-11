@@ -1,5 +1,5 @@
 <script lang="ts">
-  import "./styles/fonts/tommy/index.css";
+  import "@overlay-fonts/made-tommy";
   import companion, {
     GameStates,
     type Tokens,
