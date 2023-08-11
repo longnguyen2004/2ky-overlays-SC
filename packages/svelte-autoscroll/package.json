@@ -1,0 +1,24 @@
+{
+  "name": "svelte-autoscroll",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "exports": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rimraf dist && tsup index.ts --format esm --minify --sourcemap --dts"
+  },
+  "keywords": [],
+  "author": "Long Nguyen",
+  "license": "ISC",
+  "devDependencies": {
+    "rimraf": "^5.0.1",
+    "svelte": "^4.1.2",
+    "tsup": "^7.2.0",
+    "typescript": "^5.1.6"
+  },
+  "dependencies": {
+    "p-debounce": "^4.0.0"
+  }
+}
