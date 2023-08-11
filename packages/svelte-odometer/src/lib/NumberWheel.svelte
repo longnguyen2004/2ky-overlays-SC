@@ -3,7 +3,7 @@
 	import { cubicOut } from "svelte/easing";
 	
 	export let digit = 0;
-	export let duration = 500;
+	export let duration = 250;
 	export let decreasing = false;
 
 	const angle = tweened(digit * 36, { duration, easing: cubicOut });
@@ -52,6 +52,8 @@
 		position: absolute;
 		top: 0;
 		left: 0;
+		width: 100%;
+		text-align: center;
 		transform:
 			rotateX(var(--angle))
 			translateZ(var(--radius));

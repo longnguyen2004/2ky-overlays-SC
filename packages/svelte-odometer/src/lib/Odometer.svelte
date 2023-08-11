@@ -15,12 +15,13 @@
 	}
 	
 	export let number = 0;
+	export let incDuration = 250;
 
 	let oldNumber = number;
 	let decreasing = false;
 	let decreasingAbs = false;
 	
-	const numberTweened = tweened(number, { duration: 1000 });
+	const numberTweened = tweened(number, { duration: incDuration });
 	const integerTweened = derived(numberTweened, val => decreasing ? Math.floor(val) : Math.ceil(val));
 	
 	$: {
