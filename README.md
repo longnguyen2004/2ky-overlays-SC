@@ -19,6 +19,12 @@ This is a reimplementation of [2ky's osu!mania overlays](https://github.com/2222
 - ❌ `mania_ingame`
   - No plan to do this, use SC's Text Overlay + `mania_simple_hiterror`
 
+## Reusable packages
+
+- `osu-stream-companion-store`: A Svelte store that connects to Stream Companion
+- `svelte-autoscroll`: A Svelte action to scroll an element back and forth
+- `svelte-odometer`: A Svelte component that mimics an odometer without external dependencies
+
 ## Why Stream Companion?
 
 [gosumemory](https://github.com/l3lackShark/gosumemory) hasn't been updated for a while, aside from the occasional bug fixes. There are multiple issues with it, from failures reading judgment data, to incorrect pp formulas, to SR calculation failures, etc.
