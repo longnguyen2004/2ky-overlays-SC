@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build:all": "rimraf dist && nx run-many -t build --projects=@overlays/* && node scripts/copy-output.js"
+    "build": "rimraf dist && nx run-many -t build --projects=@overlays/* && node scripts/copy-output.js"
   },
   "keywords": [],
   "author": "Long Nguyen",
