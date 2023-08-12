@@ -12,12 +12,16 @@
   "keywords": [],
   "author": "Long Nguyen",
   "license": "MIT",
+  "peerDependencies": {
+    "svelte": "^3.0.0 || ^4.0.0"
+  },
   "dependencies": {
     "merge-anything": "^5.1.7",
     "reconnecting-websocket": "^4.4.0"
   },
   "devDependencies": {
     "rimraf": "^5.0.1",
+    "svelte": "^4.2.0",
     "ts-essentials": "^9.3.2"
   }
 }

@@ -1,6 +1,7 @@
 import ReconnectingWebSocket, { type Options as WSOptions } from "reconnecting-websocket";
 import { mergeAndConcat } from "merge-anything";
 import type { DeepPartial } from "ts-essentials";
+import type { Readable } from "svelte/store";
 import type { SCObject } from "./types.js";
 
 type BulkTokenUpdateType = "MainPipeline" | "LiveTokens";
@@ -13,11 +14,10 @@ type Options = {
     socket: WSOptions,
 };
 
-type Unsubscribe = () => void;
-type Callback = (obj: { values: SCObject, changes: SCObject | null }) => void;
-type SCStore = {
-    subscribe: (cb: Callback) => Unsubscribe
-};
+type SCStore<T extends Tokens = Tokens> = Readable<{
+    values: Pick<SCObject, T>;
+    changes: Pick<SCObject, T> | null
+}>;
 
 const defaultParams: Options = {
     debug: false,
@@ -33,19 +33,20 @@ export default function companion<T extends readonly Tokens[]>(
     tokens: T,
     options: DeepPartial<Options> = {}
 ) {
-    type SCObjectPicked = Pick<SCObject, T[number]>;
-    type StrictCallback = (obj: { values: SCObjectPicked, changes: SCObjectPicked | null; }) => void;
+    type StrictStore = SCStore<T[number]>;
+    type Subscriber = Parameters<StrictStore["subscribe"]>[0];
+    type Values = Parameters<Subscriber>[0]["values"];
 
     const mergedParams = mergeAndConcat(options, defaultParams);
-    const subscribers = new Set<StrictCallback>();
+    const subscribers = new Set<Subscriber>();
 
     function callSubscribers() {
         for (const sub of subscribers)
             sub({ values, changes });
     }
 
-    let values = {} as SCObjectPicked;
-    let changes: SCObjectPicked | null = null;
+    let values = {} as Values;
+    let changes: Values | null = null;
 
     const url = new URL(`ws://${host}/tokens`);
     if (options.bulkUpdates?.length)
@@ -66,11 +67,11 @@ export default function companion<T extends readonly Tokens[]>(
         callSubscribers();
     };
     ws.onclose = () => {
-        values = {} as SCObjectPicked;
+        values = {} as Values;
     };
 
     return {
-        subscribe: (cb: StrictCallback) => {
+        subscribe: (cb) => {
             subscribers.add(cb);
             if (ws.readyState === ws.CLOSED)
                 ws.reconnect();
@@ -82,7 +83,7 @@ export default function companion<T extends readonly Tokens[]>(
                     ws.close();
             };
         }
-    } satisfies SCStore;
+    } as StrictStore;
 }
 
 export * from "./enums.js";
