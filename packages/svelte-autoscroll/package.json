@@ -11,7 +11,7 @@
   },
   "keywords": [],
   "author": "Long Nguyen",
-  "license": "ISC",
+  "license": "MIT",
   "peerDependencies": {
     "svelte": "^3.0.0 || ^4.0.0"
   },
