@@ -35,7 +35,7 @@
 		--line-height-fallback: var(--line-height, 1.5);
 		--div-height: calc(var(--font-size-fallback) * var(--line-height-fallback));
 		--circumference: calc(var(--div-height) * 10);
-		--radius: calc(var(--circumference) / pi / 2);
+		--radius: calc(var(--circumference) / 3.14159265358979 / 2);
 
 		font-family: var(--font-family, inherit);
 		font-weight: var(--font-weight, normal);
