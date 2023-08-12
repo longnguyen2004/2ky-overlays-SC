@@ -12,5 +12,5 @@ const folders = await globby("overlays/*/dist", {
 await pMap(folders, (folder) => {
     const overlayName = folder.replaceAll(/overlays\/|\/dist/g, "");
     console.log(`Copying ${overlayName} => dist/${overlayName}`);
-    return cpy(folder + "/*", `dist/${overlayName}`, { cwd: fileURLToPath(rootDir) })
+    return cpy(folder + "/**/*", `dist/${overlayName}`, { cwd: fileURLToPath(rootDir) })
 }, { concurrency: 3 });
