@@ -27,6 +27,7 @@
     "@overlays/vite-config": "workspace:^",
     "@total-typescript/ts-reset": "^0.4.2",
     "animejs": "^3.2.1",
+    "esm-env": "^1.0.0",
     "jsonc-parser": "^3.2.0",
     "object-hash": "^3.0.0",
     "osu-stream-companion-store": "workspace:^",

@@ -134,3 +134,6 @@ overlays_private
 
 # Reference folder for each overlay
 overlays/*/reference
+
+# Dev config files
+config.dev.jsonc

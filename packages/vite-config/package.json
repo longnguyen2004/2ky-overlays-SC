@@ -12,6 +12,7 @@
   "author": "Long Nguyen",
   "license": "MIT",
   "devDependencies": {
+    "rollup-plugin-delete": "^2.0.0",
     "vite": "^4.4.5"
   }
 }

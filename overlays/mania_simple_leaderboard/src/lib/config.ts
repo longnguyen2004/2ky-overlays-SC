@@ -1,5 +1,6 @@
 import { union, string, object, array, literal, number, minValue } from "valibot";
 import { parse } from "jsonc-parser";
+import { DEV } from "esm-env";
 
 const validator = object({
     current: string(),
@@ -34,7 +35,7 @@ const validator = object({
     })
 });
 
-export const config = await fetch(`./config.jsonc?t=${Date.now()}`) // cache busting
+export const config = await fetch(`./config${DEV ? ".dev" : ""}.jsonc?t=${Date.now()}`) // cache busting
     .then(res => res.text())
     .then(text => parse(text))
-    .then(obj => validator.parse(obj))
+    .then(obj => validator.parse(obj));
