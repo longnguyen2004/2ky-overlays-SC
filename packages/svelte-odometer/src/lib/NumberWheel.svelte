@@ -40,6 +40,7 @@
 		font-family: var(--font-family, inherit);
 		font-weight: var(--font-weight, normal);
 		font-size: var(--font-size-fallback);
+		color: var(--color, black);
 		line-height: var(--line-height-fallback);
 		overflow-y: hidden;
 	}
