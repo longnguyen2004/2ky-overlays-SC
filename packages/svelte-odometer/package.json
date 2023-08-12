@@ -12,6 +12,9 @@
 		"lint": "prettier --plugin-search-dir . --check . && eslint .",
 		"format": "prettier --plugin-search-dir . --write ."
 	},
+	"nx": {
+		"includedScripts": ["package", "lint", "check"]
+	},
 	"exports": {
 		".": {
 			"types": "./dist/index.d.ts",

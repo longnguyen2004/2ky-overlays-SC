@@ -2,14 +2,21 @@
   "name": "overlays",
   "version": "1.0.0",
   "description": "A reimplementation of 2ky's overlays using Svelte + Stream Companion",
-
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:all": "rimraf dist && nx run-many -t build --projects=@overlays/* && node scripts/copy-output.js"
   },
   "keywords": [],
   "author": "Long Nguyen",
   "license": "MIT",
   "devDependencies": {
+    "@types/node": "^20.4.10",
+    "cpy": "^10.1.0",
+    "globby": "^13.2.2",
+    "nx": "16.6.0",
+    "p-map": "^6.0.0",
+    "rimraf": "^5.0.1",
     "typescript": "^5.1.6"
   }
 }
