@@ -1,5 +1,6 @@
 packages:
   - "overlays/*"
+  - "!overlays/template"
   - "overlays_private/*"
   - "packages/*"
   - "packages/@overlay-fonts/*"
