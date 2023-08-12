@@ -13,7 +13,7 @@
             "name": "osu",
             "type": "osu_v1",
             "endpoint": "https://osu.ppy.sh/api",
-            "api_key": "3833db323cca2d6f59a22744bcd1ea10e5d72812"
+            "api_key": "<your API key here>"
         },
         {
             "name": "osu_new",
