@@ -1,5 +1,5 @@
 {
-  "name": "mania_simple_leaderboard",
+  "name": "@overlays/mania_simple_leaderboard",
   "private": true,
   "version": "0.0.0",
   "type": "module",

@@ -1,5 +1,5 @@
 {
-  "name": "mania_simple_overlay",
+  "name": "@overlays/mania_simple_overlay",
   "private": true,
   "version": "0.0.0",
   "type": "module",
