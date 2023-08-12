@@ -1,0 +1,27 @@
+{
+	// The background of the cards
+	// Valid values: white, black, gray
+	"background" : "gray",
+
+	// Settings for the left box
+	// Valid values: "star", "acc", "combo"
+	"l_b" : 0,
+	"l_g" : 140,
+	"l_r" : 255,
+	"left_box" : "star",
+
+	// Settings for the right box
+	// Valid values: "ur", "pp"
+	"r_b" : 255,
+	"r_g" : 191,
+	"r_r" : 0,
+	"right_box" : "pp",
+
+	// Select between normal and simple design
+	// Currently does nothing, as simple design hasn't been implemented
+	"simple" : "off",
+
+	// Select value to go in the line below the title
+	// Valid values: "mapper", "difficult" (for compatibility), "difficulty"
+	"subtitle" : "mapper"
+}
