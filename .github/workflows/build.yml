@@ -18,6 +18,19 @@ jobs:
           cache: "pnpm"
       - name: Installing dependencies
         run: pnpm install
-      - uses: nrwl/nx-set-shas@v3
+      - name: Restoring build cache
+        uses: actions/cache/restore@v3
+        id: cache
+        with:
+          path: node_modules/.cache/nx
+          key: nx-build-cache-${{ github.sha }}
+          restore-keys: |
+            nx-build-cache-
       - name: Building all overlays
         run: pnpm run build
+      - name: Saving build cache
+        uses: actions/cache/save@v3
+        id: cache
+        with:
+          path: node_modules/.cache/nx
+          key: nx-build-cache-${{ github.sha }}
