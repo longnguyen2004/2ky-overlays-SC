@@ -11,7 +11,10 @@ This is a reimplementation of [2ky's osu!mania overlays](https://github.com/2222
   - WIP: In-game leaderboard provider
   - Will not be implemented: Score prediction (the formula doesn't make sense, and the resulting value doesn't mean anything)
 - ❌ `mania_simple_hitcount`
-- ❌ `mania_simple_hiterror`
+- ✔️ `mania_simple_hiterror`
+  - Merged regular and colorful version into one
+  - Automatic width adjustment based on scene width (max 400px)
+  - Allow for some customizations
 - ❌ `mania_nowplaying`
 - ❌ `nps_chart`
 - ❌ `mania_normal`
