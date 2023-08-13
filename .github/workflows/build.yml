@@ -20,7 +20,6 @@ jobs:
         run: pnpm install
       - name: Restoring build cache
         uses: actions/cache/restore@v3
-        id: cache
         with:
           path: node_modules/.cache/nx
           key: nx-build-cache-${{ github.sha }}
@@ -30,7 +29,6 @@ jobs:
         run: pnpm run build
       - name: Saving build cache
         uses: actions/cache/save@v3
-        id: cache
         with:
           path: node_modules/.cache/nx
           key: nx-build-cache-${{ github.sha }}
