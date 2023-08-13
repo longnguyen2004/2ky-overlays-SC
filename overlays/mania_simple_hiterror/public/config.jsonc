@@ -1,0 +1,17 @@
+{
+    // The duration in milliseconds that each tick will remain on screen for
+    // Must be a positive number
+    /* WARNING
+        Longer durations will result in more ticks on screen, which can
+        increase memory usage. 3000ms is a sane default, which works out to a
+        max of 250-300 ticks on screen. Increase at your own risk!
+    */
+    "tickDuration": 3000,
+
+    // The size of the window for average hit error calculation
+    // Must be a positive integer
+    "avgWindow": 15,
+
+    // Enable colorful mode
+    "colorful": true
+}
