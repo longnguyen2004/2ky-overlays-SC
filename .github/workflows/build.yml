@@ -1,5 +1,5 @@
 name: Build all overlays
-on: repository_dispatch
+on: workflow_dispatch
 jobs:
   build:
     runs-on: ubuntu-22.04
