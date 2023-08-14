@@ -5,20 +5,22 @@
     export let value: number = 0;
     export let color: string;
 
+    let labelElem: HTMLSpanElement;
     let oldValue = value;
-    let highlighted = false;
 
     $: {
         if (oldValue < value) {
-            highlighted = true;
-            requestAnimationFrame(() => (highlighted = false));
+            labelElem.animate([
+                { color },
+                { color: "#898989" }
+            ], { duration: 1600, direction: "normal", easing: "linear" });
         }
         oldValue = value;
     }
 </script>
 
 <div style="--highlight-color: {color}">
-    <span class:highlighted>{label}</span>
+    <span bind:this={labelElem}>{label}</span>
     <Odometer
         number={value}
         --color="white"
@@ -37,11 +39,6 @@
     }
     span {
         color: #898989;
-        transition: color 1.6s 0s linear;
         font-weight: bold;
-    }
-    .highlighted {
-        color: var(--highlight-color);
-        transition: color 0s 0s linear;
     }
 </style>
