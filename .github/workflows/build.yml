@@ -32,3 +32,10 @@ jobs:
         with:
           path: node_modules/.cache/nx
           key: nx-build-cache-${{ github.sha }}
+      - name: Zipping overlays
+        run: cd dist && zip -r overlays.zip * && cd ..
+      - name: Uploading artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: overlays
+          path: dist/overlays.zip
