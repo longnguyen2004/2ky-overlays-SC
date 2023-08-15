@@ -89,7 +89,7 @@
         {@const current = timestamp === "now"}
         <div class="score-card" class:current data-index={i}>
             <span class="rank">
-                {current && i >= limit ? "#??" : `#${i + 1}`}
+                {current && limit > 0 && i >= limit ? "#??" : `#${i + 1}`}
             </span>
             <span class="name">{username}</span>
             <span class="score">{score}</span>
