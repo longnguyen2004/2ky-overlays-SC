@@ -32,7 +32,12 @@
         if (elem) {
             const newIndex = +(elem.getAttribute("data-index") ?? 0);
             if (currentIndex != newIndex) {
+                const below = [...leaderboard.children].slice(
+                    newIndex + 1,
+                    currentIndex + 1
+                );
                 const delta = newIndex - currentIndex;
+                currentIndex = newIndex;
                 const numCardsOnTop = Math.floor(cardCount / 2);
                 anime({
                     targets: leaderboard,
@@ -48,10 +53,6 @@
                 if (prevAnim)
                     currentTransform =
                         +prevAnim.animations[0].currentValue.replace("px", "");
-                const below = [...leaderboard.children].slice(
-                    newIndex + 1,
-                    currentIndex + 1
-                );
                 prevAnim = anime({
                     targets: elem,
                     translateY: {
@@ -73,7 +74,6 @@
                     duration: scrollDuration,
                     easing: "easeOutCubic",
                 });
-                currentIndex = newIndex;
             }
         }
     });
