@@ -4,7 +4,6 @@
     GameStates,
     type Tokens,
   } from "osu-stream-companion-store";
-  import objectHash from "object-hash";
   import { config } from "./lib/config";
   import * as Client from "./lib/api";
 
@@ -83,17 +82,9 @@
 >
   {#if isGameplay && gameMode !== undefined}
     {#await fetcher.getMapLeaderboard(mapid || -1, gameMode) then res}
-      {@const { scores, limit } = res}
-      <Leaderboard
-        scores={scores || []}
-        currentScore={current}
-        hasher={({ username, current }) => objectHash({ username, current })}
-        {limit}
-        {cardWidth}
-        {cardHeight}
-        {cardCount}
-        {cardGap}
-      />
+      {@const { scores: leaderboard, limit } = res}
+      {@const scores = [...(leaderboard || []), current]}
+      <Leaderboard {scores} {limit} {cardWidth} {cardHeight} {cardCount} {cardGap} />
     {/await}
   {/if}
 </main>
