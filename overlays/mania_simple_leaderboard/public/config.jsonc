@@ -1,7 +1,9 @@
 {
     // Set the server to fetch leaderboard from in the `current` field
     // Servers list are defined in the `servers` array
-    // The `current` field must match one of the names in the `servers` array
+    // The `current` field must match one of the names in the `servers` array,
+    // or be equal to "ingame"
+    // If `current` is "ingame", the overlay will use the in game leaderboard
     // Some common servers are defined below
 
     // Some backends require CORS to be disabled, which is unsafe and insecure
