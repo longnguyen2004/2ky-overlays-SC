@@ -93,7 +93,7 @@
             </span>
             <span class="name">{username}</span>
             <span class="score">{score}</span>
-            <span class="acc">{accuracy.toFixed(2)}%</span>
+            <span class="acc">{accuracy?.toFixed(2) ?? "--"}%</span>
             <span class="maxc">{max_combo}x</span>
         </div>
     {/each}
