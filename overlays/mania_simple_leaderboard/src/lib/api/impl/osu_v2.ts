@@ -94,7 +94,6 @@ export class OsuV2 implements ApiClient {
                 score,
                 max_combo,
                 username: user.username,
-                timestamp: created_at
             })),
             limit
         };

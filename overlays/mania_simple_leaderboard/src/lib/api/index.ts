@@ -5,7 +5,7 @@ export type ScoreEntry = {
     score: number,
     accuracy?: number,
     max_combo: number,
-    timestamp: string | number
+    current?: boolean
 };
 
 export interface ApiClient

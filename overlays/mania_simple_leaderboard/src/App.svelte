@@ -58,7 +58,7 @@
     accuracy: values.acc || 0,
     score: values.score || 0,
     max_combo: values.currentMaxCombo || 0,
-    timestamp: "now",
+    current: true
   };
   $: isGameplay =
     values.status &&

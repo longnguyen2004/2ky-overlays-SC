@@ -16,6 +16,12 @@ export class AkatsukiV1 implements ApiClient {
     constructor(endpoint: string) {
         this._endpoint = endpoint;
     }
+    async getMapInfo(id: number)
+    {
+        const url = new URL(`${this._endpoint}/get_map_info`);
+        url.searchParams.set("id", id.toString());
+        
+    }
     async getMapLeaderboard(id: number, mode: GameMode, limit: number = Infinity) {
         limit = Math.min(limit, 100);
         const url = new URL(`${this._endpoint}/get_map_scores`);
@@ -44,7 +50,6 @@ export class AkatsukiV1 implements ApiClient {
                 score,
                 accuracy: acc,
                 max_combo,
-                timestamp: play_time
             })),
             limit
         };
