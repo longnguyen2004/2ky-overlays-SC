@@ -95,7 +95,7 @@
     {#await fetcher.getMapLeaderboard(mapid || -1, gameMode) then res}
       {#if res.scores}
         {@const { scores: leaderboard, limit } = res}
-        {@const scores = [...(leaderboard || []), current]}
+        {@const scores = [...leaderboard, current]}
         <Leaderboard
           {scores}
           {limit}
