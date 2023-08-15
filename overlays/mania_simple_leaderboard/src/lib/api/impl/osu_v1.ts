@@ -72,6 +72,7 @@ export class OsuV1 implements ApiClient {
                     miss: +countmiss
                 }, mode) * 100,
                 max_combo: +maxcombo,
+                timestamp: date
             })),
             limit
         };

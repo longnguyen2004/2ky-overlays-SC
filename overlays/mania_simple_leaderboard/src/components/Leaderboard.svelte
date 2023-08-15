@@ -81,7 +81,7 @@
     function scoreSorter(a: ScoreEntry, b: ScoreEntry) {
         const diff = b.score - a.score;
         if (diff != 0) return diff;
-        return +!!b.current - +!!a.current;
+        return +(b.timestamp === "now") - +(a.timestamp === "now");
     }
 </script>
 
@@ -95,7 +95,8 @@
         --card-gap: {cardGap}px
     "
 >
-    {#each [...hashedScores, hashedCurrentScore].sort(scoreSorter) as { username, accuracy, score, max_combo, current, hash }, i (hash)}
+    {#each [...scores].sort(scoreSorter) as { username, accuracy, score, max_combo, timestamp }, i (MD5( { username, timestamp } ))}
+        {@const current = timestamp === "now"}
         <div class="score-card" class:current data-index={i}>
             <span class="rank">
                 {current && i >= limit ? "#??" : `#${i + 1}`}
