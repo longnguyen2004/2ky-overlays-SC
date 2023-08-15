@@ -1,4 +1,3 @@
-import objectHash from "object-hash";
 import type { ScoreEntry } from "./api";
 import type { GameMode, Grade } from "osu-stream-companion-store";
 
@@ -24,10 +23,11 @@ type InGameEntry = {
 export function parseInGameLeaderboard(str: string): ScoreEntry[] {
     const leaderboard = JSON.parse(str) as InGameEntry[];
     return leaderboard
-        .map(({ Username, Score, MaxCombo, Date }) => ({
+        .map(({ Username, Score, MaxCombo, Accuracy, Date }) => ({
             username: Username,
             score: Score,
             max_combo: MaxCombo,
+            accuracy: Accuracy,
             timestamp: Date
         }));
 }
