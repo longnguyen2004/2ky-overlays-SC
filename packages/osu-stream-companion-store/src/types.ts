@@ -42,7 +42,7 @@ export interface SCObject extends Partial<{
     sliderBreaks: number,
     songSelectionMainPlayerScore: number,
     songSelectionRankingType: number // TODO: define enums
-    songSelectionScores: string,
+    songSelectionScores: string | 0,
     songSelectionTotalScores: number,
     speedPpIfMapEndsNow: number,
     strainPpIfMapEndsNow: number,
