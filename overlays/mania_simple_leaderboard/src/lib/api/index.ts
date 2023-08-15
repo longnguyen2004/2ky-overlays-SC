@@ -13,7 +13,7 @@ export interface ApiClient
     getMapLeaderboard(id: number, mode: GameMode, limit?: number): Promise<{
         scores: ScoreEntry[] | undefined,
         limit: number
-    } | void>;
+    }>;
 }
 
 export { OsuV1 } from "./impl/osu_v1";
