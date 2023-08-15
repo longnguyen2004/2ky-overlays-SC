@@ -33,7 +33,6 @@
             const newIndex = +(elem.getAttribute("data-index") ?? 0);
             if (currentIndex != newIndex) {
                 const delta = newIndex - currentIndex;
-                currentIndex = newIndex;
                 const numCardsOnTop = Math.floor(cardCount / 2);
                 anime({
                     targets: leaderboard,
@@ -74,6 +73,7 @@
                     duration: scrollDuration,
                     easing: "easeOutCubic",
                 });
+                currentIndex = newIndex;
             }
         }
     });
