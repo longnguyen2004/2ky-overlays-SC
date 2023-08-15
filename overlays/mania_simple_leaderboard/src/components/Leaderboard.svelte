@@ -1,6 +1,5 @@
 <script lang="ts">
     import anime, { type AnimeInstance } from "animejs";
-    import { MD5 } from "object-hash";
     import { afterUpdate } from "svelte";
     import type { ScoreEntry } from "../lib/api";
     export let cardWidth: number;
@@ -9,7 +8,18 @@
     export let cardGap: number;
 
     export let scores: ScoreEntry[];
+    export let currentScore: ScoreEntry;
     export let limit: number;
+    export let hasher: (score: ScoreEntry, index: number) => string;
+
+    $: hashedScores = scores.map((score, index) => ({
+        ...score,
+        hash: hasher(score, index),
+    }));
+    $: hashedCurrentScore = {
+        ...currentScore,
+        hash: hasher(currentScore, -1),
+    };
 
     let leaderboard: HTMLDivElement;
     const scrollDuration = 1000;
@@ -54,7 +64,7 @@
                     },
                     translateX: {
                         value: [50, 0],
-                        duration: 500
+                        duration: 500,
                     },
                     easing: "easeOutCubic",
                 });
@@ -85,7 +95,7 @@
         --card-gap: {cardGap}px
     "
 >
-    {#each [...scores].sort(scoreSorter) as { username, accuracy, score, max_combo, current }, i (MD5( { username, current } ))}
+    {#each [...hashedScores, hashedCurrentScore].sort(scoreSorter) as { username, accuracy, score, max_combo, current, hash }, i (hash)}
         <div class="score-card" class:current data-index={i}>
             <span class="rank">
                 {current && i >= limit ? "#??" : `#${i + 1}`}
