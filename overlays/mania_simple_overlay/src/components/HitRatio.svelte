@@ -10,12 +10,14 @@
 </script>
 
 <div class="separator">
-    <div style="width: {total ? c320 / total * 100 : 0}%" class="c320" />
-    <div style="width: {total ? c300 / total * 100 : 0}%" class="c300" />
-    <div style="width: {total ? c200 / total * 100 : 0}%" class="c200" />
-    <div style="width: {total ? c100 / total * 100 : 0}%" class="c100" />
-    <div style="width: {total ? c50  / total * 100 : 0}%" class="c50"  />
-    <div style="width: {total ? miss / total * 100 : 0}%" class="miss" />
+    {#if total}
+        <div style="width: {c320 / total * 100}%" class="c320" />
+        <div style="width: {c300 / total * 100}%" class="c300" />
+        <div style="width: {c200 / total * 100}%" class="c200" />
+        <div style="width: {c100 / total * 100}%" class="c100" />
+        <div style="width: {c50  / total * 100}%" class="c50"  />
+        <div style="width: {miss / total * 100}%" class="miss" />
+    {/if}
 </div>
 
 <style>
