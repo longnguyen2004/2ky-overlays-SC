@@ -1,7 +1,7 @@
 import ReconnectingWebSocket, { type Options as WSOptions } from "reconnecting-websocket";
 import { mergeAndConcat } from "merge-anything";
+import { readable, type Readable } from "svelte/store";
 import type { DeepPartial } from "ts-essentials";
-import type { Readable } from "svelte/store";
 import type { SCObject } from "./types.js";
 
 type BulkTokenUpdateType = "MainPipeline" | "LiveTokens";
@@ -16,7 +16,7 @@ type Options = {
 
 type SCStore<T extends Tokens = Tokens> = Readable<{
     values: Pick<SCObject, T>;
-    changes: Pick<SCObject, T> | null
+    changes?: Pick<SCObject, T>
 }>;
 
 const defaultParams: Options = {
@@ -33,57 +33,31 @@ export default function companion<T extends readonly Tokens[]>(
     tokens: T,
     options: DeepPartial<Options> = {}
 ) {
-    type StrictStore = SCStore<T[number]>;
-    type Subscriber = Parameters<StrictStore["subscribe"]>[0];
-    type Values = Parameters<Subscriber>[0]["values"];
-
-    const mergedParams = mergeAndConcat(options, defaultParams);
-    const subscribers = new Set<Subscriber>();
-
-    function callSubscribers() {
-        for (const sub of subscribers)
-            sub({ values, changes });
-    }
-
-    let values = {} as Values;
-    let changes: Values | null = null;
-
-    const url = new URL(`ws://${host}/tokens`);
-    if (options.bulkUpdates?.length)
-    {
-        url.searchParams.set("bulkupdates", [...new Set(options.bulkUpdates)].join(","));
-    }
-    const ws = new ReconnectingWebSocket(url.toString(), [], {
-        ...mergedParams.socket,
-        startClosed: true
-    });
-
-    ws.onopen = () => {
-        ws.send(JSON.stringify(tokens));
-    };
-    ws.onmessage = (e) => {
-        changes = JSON.parse(e.data);
-        values = { ...values, ...changes };
-        callSubscribers();
-    };
-    ws.onclose = () => {
-        values = {} as Values;
-    };
-
-    return {
-        subscribe: (cb) => {
-            subscribers.add(cb);
-            if (ws.readyState === ws.CLOSED)
-                ws.reconnect();
-            cb({ values, changes: null });
-
-            return () => {
-                subscribers.delete(cb);
-                if (subscribers.size === 0)
-                    ws.close();
-            };
+    const mergedParams = mergeAndConcat(defaultParams, options);
+    return readable({ values: {} }, (set, update) => {
+        const url = new URL(`ws://${host}/tokens`);
+        if (options.bulkUpdates?.length)
+        {
+            url.searchParams.set("bulkupdates", [...new Set(options.bulkUpdates)].join(","));
         }
-    } as StrictStore;
+        const ws = new ReconnectingWebSocket(url.toString(), [], mergedParams.socket);
+
+        ws.onopen = () => {
+            ws.send(JSON.stringify(tokens));
+        };
+        ws.onmessage = (e) => {
+            const changes = JSON.parse(e.data);
+            update(({values}) => ({
+                values: { ...values, ...changes },
+                changes
+            }));
+        };
+        
+        return () => {
+            set({ values: {} });
+            ws.close();
+        }
+    }) as SCStore<T[number]>;
 }
 
 export * from "./enums.js";
