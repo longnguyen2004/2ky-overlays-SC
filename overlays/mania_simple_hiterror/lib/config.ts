@@ -1,5 +1,6 @@
 import { object, number, boolean, minValue, integer } from "valibot";
 import { parse } from "jsonc-parser";
+import { DEV } from "esm-env";
 
 const validator = object({
     tickDuration: number(
@@ -16,7 +17,7 @@ const validator = object({
     colorful: boolean("Colorful switch must be true or false")
 });
 
-export const config = await fetch(`./config.jsonc?t=${Date.now()}`) // cache busting
+export const config = await fetch(`./config${DEV ? ".dev" : ""}.jsonc?t=${Date.now()}`) // cache busting
     .then(res => res.text())
     .then(parse)
     .then(obj => validator.parse(obj));
