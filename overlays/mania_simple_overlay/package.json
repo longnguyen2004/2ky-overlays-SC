@@ -23,8 +23,7 @@
   },
   "dependencies": {
     "@overlay-fonts/made-tommy": "workspace:^",
-    "esm-env": "^1.0.0",
-    "jsonc-parser": "^3.2.0",
+    "config-reader": "workspace:^",
     "osu-stream-companion-store": "workspace:^",
     "svelte-autoscroll": "workspace:^",
     "svelte-odometer": "workspace:^",

@@ -1,6 +1,5 @@
 import { union, object, literal, number, minValue, maxValue } from "valibot";
-import { parse } from "jsonc-parser";
-import { DEV } from "esm-env";
+import { readConfig } from "config-reader";
 
 const rgbValue = number("Color value isn't a number",
     [
@@ -41,7 +40,4 @@ const validator = object({
     ], "Invalid choice for subtitle")
 });
 
-export const config = await fetch(`./config${DEV ? ".dev" : ""}.jsonc?t=${Date.now()}`) // cache busting
-    .then(res => res.text())
-    .then(parse)
-    .then(obj => validator.parse(obj))
+export const config = await readConfig(validator);
