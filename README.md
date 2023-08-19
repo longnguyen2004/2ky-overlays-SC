@@ -7,6 +7,7 @@ This is a reimplementation of [2ky's osu!mania overlays](https://github.com/2222
 - ✔️ `mania_simple_overlay`
   - Simple mode not implemented yet
   - Added judgment distribution bar
+  - New counter: live star rating
 - ✔️ `mania_simple_leaderboard`
   - Supported server type: `osu-v1`, `osu-v2`, `akatsuki-v1`
   - ~~WIP: In-game leaderboard provider~~ Implemented, automatic fallback in the work
