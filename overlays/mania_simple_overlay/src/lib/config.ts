@@ -1,4 +1,4 @@
-import { union, object, literal, number, minValue, maxValue } from "valibot";
+import { union, object, literal, number, boolean, minValue, maxValue } from "valibot";
 import { readConfig } from "config-reader";
 
 const rgbValue = number("Color value isn't a number",
@@ -14,6 +14,7 @@ const validator = object({
         literal("white"),
         literal("gray")
     ], "Invalid color for background"),
+    mapBackground: boolean(),
     l_r: rgbValue,
     l_g: rgbValue,
     l_b: rgbValue,

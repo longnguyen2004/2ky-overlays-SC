@@ -17,6 +17,10 @@ body {
 .card {
     padding: 15px 30px;
     background-color: var(--background, var(--bg-white));
+    background-image: var(--background-image);
+    background-position: 50% 50%;
+    background-size: cover;
+    background-blend-mode: multiply;
     border-radius: 30px;
 }
 .separator {

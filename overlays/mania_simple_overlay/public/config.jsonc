@@ -1,7 +1,10 @@
 {
 	// The background of the cards
 	// Valid values: white, black, gray
-	"background" : "gray",
+	"background": "gray",
+
+	// Enable map background
+	"mapBackground": false,
 
 	// Settings for the left box
 	// Valid values: "star", "acc", "combo"
