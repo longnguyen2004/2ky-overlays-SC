@@ -20,6 +20,7 @@ const validator = object({
     l_b: rgbValue,
     left_box: union([
         literal("star"),
+        literal("star_live"),
         literal("acc"),
         literal("combo")
     ], "Invalid choice for left_box"),

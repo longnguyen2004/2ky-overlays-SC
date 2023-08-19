@@ -11,7 +11,7 @@
     $: ({
         geki: c320, c300, katsu: c200, c100, c50, miss,
 
-        acc, currentMaxCombo, mStars,
+        acc, currentMaxCombo, mStars, liveStarRating,
         unstableRate, ppIfMapEndsNow,
 
         artistRoman, titleRoman, creator, diffName        
@@ -24,6 +24,9 @@
             {#if left_box === "star"}
                 <span>STAR RATE</span>
                 <span class="value">{(mStars ?? 0).toFixed(2)}</span>
+            {:else if left_box === "star_live"}
+                <span>LIVE STAR RATE</span>
+                <span class="value">{(liveStarRating ?? 0).toFixed(2)}</span>
             {:else if left_box === "acc"}
                 <span>ACCURACY</span>
                 <span class="value">{(acc ?? 0).toFixed(2)}</span>

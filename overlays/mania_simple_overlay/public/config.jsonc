@@ -7,7 +7,7 @@
 	"mapBackground": false,
 
 	// Settings for the left box
-	// Valid values: "star", "acc", "combo"
+	// Valid values: "star", "star_live", "acc", "combo"
 	"l_b" : 0,
 	"l_g" : 140,
 	"l_r" : 255,

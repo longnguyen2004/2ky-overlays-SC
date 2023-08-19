@@ -27,6 +27,7 @@
     "acc",
     "currentMaxCombo",
     "mStars",
+    "liveStarRating",
     "unstableRate",
     "ppIfMapEndsNow",
 
