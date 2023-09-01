@@ -19,6 +19,7 @@
     "artistRoman",
     "diffName",
     "creator",
+    "totaltime",
 
     // Background
     "backgroundImageLocation",
@@ -30,6 +31,7 @@
     "liveStarRating",
     "unstableRate",
     "ppIfMapEndsNow",
+    "time",
 
     // Game status
     "osuIsRunning",

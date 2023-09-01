@@ -5,6 +5,7 @@
     import { config } from "../lib/config";
 
     import type { SCStore } from "osu-stream-companion-store";
+    import Progress from "../components/Progress.svelte";
     export let store: SCStore;
     const { left_box, right_box, l_r, l_g, l_b, r_r, r_g, r_b, subtitle } = config;
 
@@ -13,6 +14,8 @@
 
         acc, currentMaxCombo, mStars, liveStarRating,
         unstableRate, ppIfMapEndsNow,
+
+        time, totaltime,
 
         artistRoman, titleRoman, creator, diffName        
     } = $store.values);
@@ -45,7 +48,7 @@
             {/if}
         </div>
     </section>
-    <div class="separator" />
+    <Progress percent={!!time && !!totaltime ? time * 100000 / totaltime : 0} />
     <section class="info">
         <span class="title" use:autoscroll={{ axis: "x" }}>
             {artistRoman} - {titleRoman}
