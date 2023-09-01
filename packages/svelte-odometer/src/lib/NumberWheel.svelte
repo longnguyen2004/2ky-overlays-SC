@@ -7,8 +7,10 @@
 	export let decreasing = false;
 
 	const angle = tweened(digit * 36, { duration, easing: cubicOut });
+	let timer: number;
 	$: {
 		let newAngle = digit * 36;
+		timer && clearTimeout(timer);
 		angle.update(prev => {
 			let setAngle = newAngle;
 			if (decreasing)
@@ -16,7 +18,7 @@
 			else
 				while (setAngle < prev) setAngle += 360;
 			return setAngle;
-		}).then(() => angle.set(newAngle, { duration: 0 }));
+		}).then(() => setTimeout(() => angle.set(newAngle, { duration: 0 }), 0));
 	}
 </script>
 
