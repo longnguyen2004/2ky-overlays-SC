@@ -61,4 +61,5 @@ export default function companion<T extends readonly Tokens[]>(
 }
 
 export * from "./enums.js";
+export * from "./utils.js"
 export type { SCObject, SCStore, Tokens };
