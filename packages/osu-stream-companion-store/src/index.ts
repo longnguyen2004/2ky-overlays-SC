@@ -8,20 +8,22 @@ type BulkTokenUpdateType = "MainPipeline" | "LiveTokens";
 
 type Tokens = keyof SCObject;
 
-type Options = {
+type Options<T extends Tokens = Tokens> = {
     debug: boolean;
     bulkUpdates: BulkTokenUpdateType[];
+    hooks: ((a: SCStoreValues<T>) => Pick<SCObject, T> | undefined)[];
     socket: WSOptions,
 };
 
-type SCStore<T extends Tokens = Tokens> = Readable<{
+type SCStoreValues<T extends Tokens = Tokens> = {
     values: Pick<SCObject, T>;
-    changes?: Pick<SCObject, T>
-}>;
+    changes?: Pick<SCObject, T>;
+};
 
-const defaultParams: Options = {
+type SCStore<T extends Tokens = Tokens> = Readable<SCStoreValues<T>>;
+
+const defaultParams: Partial<Options> = {
     debug: false,
-    bulkUpdates: [],
     socket: {
         maxReconnectionDelay: 1000,
         minReconnectionDelay: 1000
@@ -31,13 +33,12 @@ const defaultParams: Options = {
 export default function companion<T extends readonly Tokens[]>(
     host: string,
     tokens: T,
-    options: DeepPartial<Options> = {}
+    options: Partial<Options<T[number]>> = {}
 ) {
     const mergedParams = mergeAndConcat(defaultParams, options);
     return readable({ values: {} }, (set, update) => {
         const url = new URL(`ws://${host}/tokens`);
-        if (options.bulkUpdates?.length)
-        {
+        if (options.bulkUpdates?.length) {
             url.searchParams.set("bulkupdates", [...new Set(options.bulkUpdates)].join(","));
         }
         const ws = new ReconnectingWebSocket(url.toString(), [], mergedParams.socket);
@@ -46,20 +47,24 @@ export default function companion<T extends readonly Tokens[]>(
             ws.send(JSON.stringify(tokens));
         };
         ws.onmessage = (e) => {
-            const changes = JSON.parse(e.data);
-            update(({values}) => ({
-                values: { ...values, ...changes },
-                changes
-            }));
+            let changes = JSON.parse(e.data);
+            update(({ values }) => {
+                for (const hook of options.hooks || [])
+                {
+                    changes = { ...changes, ...hook({ values: values as Pick<SCObject, T[number]>, changes }) };
+                    values = {...values, ...changes};
+                }
+                return { values: { ...values, ...changes }, changes };
+            });
         };
-        
+
         return () => {
             set({ values: {} });
             ws.close();
-        }
+        };
     }) as SCStore<T[number]>;
 }
 
 export * from "./enums.js";
-export * from "./utils.js"
+export * from "./utils.js";
 export type { SCObject, SCStore, Tokens };
