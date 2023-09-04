@@ -18,7 +18,9 @@ This is a reimplementation of [2ky's osu!mania overlays](https://github.com/2222
   - Automatic width adjustment based on scene width (max 400px)
   - Allow for some customizations
 - ❌ `mania_nowplaying`
-- ❌ `nps_chart`
+- ✔️ `nps_chart`
+  - Chart aspect ratio is now 2/1 instead of 1/1
+  - Using chart.js instead of Apache ECharts
 - ❌ `mania_normal`
   - No plan to do this, use SC's Text Overlay instead
 - ❌ `mania_ingame`
